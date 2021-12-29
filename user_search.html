@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>loginfo</title>
+	<script>
+		function showSite(str)
+{
+	if (str=="")
+	{
+		document.getElementById("txtHint").innerHTML="no input";
+		return;
+	}
+	if (window.XMLHttpRequest)
+	{
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
+		}
+	}
+	xmlhttp.open("GET","UserSearchResult.php?q="+str,true);
+	xmlhttp.send();
+}
+	</script>
+	</head>
+	<body>
+		<label for "rec"><strong>Find User<strong></label>
+		<br>
+		<input id="user" type="text" placeholder="userID"/>
+		<input type="submit" value="search" onclick="showSite(user.value)"/>
+		<br>
+		<div id="txtHint"><b>web info show here......</b></div>
+	</body>
+	</html>
